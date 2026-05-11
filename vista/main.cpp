@@ -272,26 +272,23 @@ int main() {
     return 0;
 }
 
-// --------------------------------------------------------------
-//  IMPLEMENTACIÓN DE LAS FUNCIONES DE VALIDACIÓN
-// --------------------------------------------------------------
 
 bool validarCodigo(const string& codigo, int id_actual) {
-    // 1. No vacío
+   
     if (codigo.empty()) return false;
-    // 2. Máximo 4 caracteres
+   
     if (codigo.length() > 4) return false;
-    // 3. Formato EXXX (expresión regular)
+    
     regex pattern("^E[0-9]{3}$");
     if (!regex_match(codigo, pattern)) return false;
-    // 4. No duplicado (excepto el mismo id en actualización)
+   
     return !existeCodigoEnBD(codigo, id_actual);
 }
 
 bool validarNombresApellidos(const string& texto, bool esNombre) {
     if (texto.empty()) return false;
     if (texto.length() > 60) return false;
-    // Solo letras (incluyendo ñ, Ñ, acentos) y espacios
+    
     regex pattern("^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$");
     return regex_match(texto, pattern);
 }
@@ -299,7 +296,7 @@ bool validarNombresApellidos(const string& texto, bool esNombre) {
 bool validarDireccion(const string& direccion) {
     if (direccion.empty()) return false;
     if (direccion.length() > 100) return false;
-    // Evitar caracteres peligrosos para SQL: ' " ; -- etc.
+    
     if (direccion.find('\'') != string::npos ||
         direccion.find('"') != string::npos ||
         direccion.find(';') != string::npos ||
@@ -311,11 +308,11 @@ bool validarDireccion(const string& direccion) {
 
 bool validarTelefono(const string& telefonoStr) {
     if (telefonoStr.empty()) return false;
-    // Verificar que todos sean dígitos
+   
     for (char c : telefonoStr) {
         if (!isdigit(c)) return false;
     }
-    // Longitud exacta de 8 dígitos (ajustable)
+    
     return telefonoStr.length() == 8;
 }
 bool validarFechaNacimiento(const string& fecha) {
@@ -337,10 +334,10 @@ bool validarFechaNacimiento(const string& fecha) {
     }
     if (dia > diasPorMes[mes - 1]) return false;
 
-    // Obtener fecha actual de forma segura
+    
     time_t t = time(nullptr);
     struct tm fechaActual;
-    localtime_s(&fechaActual, &t);  // Usar localtime_s
+    localtime_s(&fechaActual, &t);  
 
     int anioActual = fechaActual.tm_year + 1900;
     int mesActual = fechaActual.tm_mon + 1;
@@ -353,31 +350,20 @@ bool validarFechaNacimiento(const string& fecha) {
     return true;
 }
 bool validarIdTipoSangre(int id_tipo_sangre) {
-    // Validar que sea un número positivo y exista en la tabla tipos_sangre
+    
     if (id_tipo_sangre <= 0) return false;
     return existeTipoSangreEnBD(id_tipo_sangre);
 }
 
-// --------------------------------------------------------------
-//  FUNCIONES QUE DEBES IMPLEMENTAR EN LA LÓGICA DE BD
-// --------------------------------------------------------------
 
 bool existeCodigoEnBD(const string& codigo, int id_excluir) {
-    // Esta función debe consultar la base de datos para verificar si
-    // ya existe un estudiante con el mismo código (excepto el que tiene id_excluir).
-    // Retorna true si existe, false si no.
-    // Ejemplo (con SQLite, MySQL, etc.):
-    // SELECT COUNT(*) FROM estudiantes WHERE codigo = ? AND id_estudiante != ?
-    // Si el conteo > 0 → existe.
-    // Por ahora, placeholder:
-    return false;  // Cambiar por consulta real
+  
+    return false;  
 }
 
 bool existeTipoSangreEnBD(int id_tipo_sangre) {
-    // Consultar la tabla tipos_sangre:
-    // SELECT COUNT(*) FROM tipos_sangre WHERE id_tipo_sangre = ?
-    // Retorna true si existe.
-    return true;  // Cambiar por consulta real
+
+    return true;  
 }
 
 void listarTodosLosEstudiantes() {
