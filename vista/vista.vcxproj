@@ -139,11 +139,13 @@
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Persona.cpp" />
+    <ClCompile Include="Tarea_9.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConexionBD.h" />
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Persona.h" />
+    <ClInclude Include="Tarea_9.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
