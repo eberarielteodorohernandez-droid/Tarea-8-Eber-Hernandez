@@ -2,9 +2,13 @@
 #include <iostream>
 #include "Estudiante.h"
 using namespace std;
-int main(){
-	string codigo,nombres, apellidos, direccion, fecha_nacimiento;
-	int telefono = 0, id_tipo_sangre = 0, id_estudiante = 0;
+// Para evitar conflictos con macros de Windows
+#ifdef max
+#undef max
+#endif
+#ifdef min
+#undef min
+#endif
 
 	cout << "Ingrese codigo: ";
 	cin >> codigo;
