@@ -1,10 +1,9 @@
 #pragma once
-#define _HAS_STD_BYTE 0
-#include "Persona.h"
-#include "ConexionBD.h"
 #include <iostream>
-#include <mysql.h>
 #include <string>
+#include "ConexionBD.h"
+#include "Persona.h"
+#include <mysql.h>
 using namespace std;
 class Estudiante : Persona {
 	//Atributos

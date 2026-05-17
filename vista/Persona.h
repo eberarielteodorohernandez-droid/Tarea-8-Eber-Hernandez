@@ -1,4 +1,3 @@
-#define _HAS_STD_BYTE 0
 #pragma once
 #include <iostream>
 using namespace std;
